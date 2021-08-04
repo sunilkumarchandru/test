@@ -1,0 +1,10 @@
+---
+# main tasks for windows_compliance role
+- name: Get server OS info
+  set_fact:
+    os_version: >-
+      {{ 'Win2019' if '2019' in ansible_os_name else 'Win2016' if '2016' in ansible_os_name
+      else 'Win2012' if '2012' in ansible_os_name else 'Win2008' if '2008' in ansible_os_name
+      else 'Not supported OS' }}
+- debug:
+    msg: "OS version detected: {{ os_version }} ({{ ansible_os_name }})"
